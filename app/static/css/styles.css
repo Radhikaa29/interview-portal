@@ -1,0 +1,1484 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: #2d3436;
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+/* Navigation Bar */
+header {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0984e3; /* Fallback color */
+    text-decoration: none;
+    background: linear-gradient(45deg, #0984e3, #00b894);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #2d3436;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(45deg, #0984e3, #00b894);
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 8rem 2rem 4rem;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: #0984e3; /* Fallback color */
+    background: linear-gradient(45deg, #0984e3, #00b894);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: #636e72;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+/* Form Containers */
+.login-container,
+.register-container {
+    max-width: 450px;
+    margin: 8rem auto 4rem;
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.login-container h2,
+.register-container h2 {
+    text-align: center;
+    color: #2d3436;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+/* Form Elements */
+input, select {
+    width: 100%;
+    padding: 1rem;
+    margin: 0.5rem 0 1rem;
+    border: 2px solid #dfe6e9;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #0984e3;
+    box-shadow: 0 0 0 3px rgba(9, 132, 227, 0.1);
+}
+
+.password-container {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #636e72;
+    transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: #0984e3;
+}
+
+/* Buttons */
+.btn {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(45deg, #0984e3, #00b894);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(9, 132, 227, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* Dashboard */
+.dashboard-container {
+    max-width: 1200px;
+    margin: 8rem auto 4rem;
+    padding: 3rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboard-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #0984e3, #00b894, #0984e3);
+    background-size: 200% 100%;
+    animation: gradientMove 3s linear infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
+}
+
+.dashboard-container h2 {
+    color: #2d3436;
+    margin-bottom: 3rem;
+    text-align: center;
+    font-size: 3rem;
+    position: relative;
+    padding-bottom: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.dashboard-container h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 5px;
+    background: linear-gradient(45deg, #0984e3, #00b894);
+    border-radius: 3px;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.option-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.option-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(45deg, #0984e3, #00b894);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.option-card:hover::before {
+    transform: scaleX(1);
+}
+
+.option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+.option-card h3 {
+    color: #2d3436;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.option-card p {
+    color: #636e72;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.select-option-text {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #2d3436;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.option-btn {
+    margin: 0;
+    width: 100%;
+    padding: 1.5rem 2rem;
+    display: inline-block;
+    background: linear-gradient(45deg, #0984e3, #00b894);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+.option-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.option-btn:hover::before {
+    left: 100%;
+}
+
+.option-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(9, 132, 227, 0.3);
+}
+
+/* Dashboard Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dashboard-container {
+    animation: slideIn 0.5s ease-out;
+}
+
+.option-card {
+    animation: slideIn 0.5s ease-out;
+    animation-fill-mode: both;
+}
+
+.option-card:nth-child(1) { animation-delay: 0.1s; }
+.option-card:nth-child(2) { animation-delay: 0.2s; }
+.option-card:nth-child(3) { animation-delay: 0.3s; }
+
+/* Responsive Design for Dashboard */
+@media (max-width: 768px) {
+    .dashboard-container {
+        margin: 6rem 1rem 2rem;
+        padding: 1.5rem;
+    }
+
+    .dashboard-container h2 {
+        font-size: 2rem;
+    }
+
+    .options {
+        grid-template-columns: 1fr;
+    }
+
+    .option-card {
+        padding: 1.5rem;
+    }
+
+    .select-option-text {
+        font-size: 1.5rem;
+    }
+
+    .option-btn {
+        font-size: 1.5rem;
+        padding: 1.2rem 1.5rem;
+    }
+}
+
+/* MCQ Container */
+.mcq-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.question {
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.question:hover {
+    transform: translateY(-2px);
+}
+
+label {
+    display: block;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+label:hover {
+    background-color: #f5f7fa;
+}
+
+input[type="radio"] {
+    margin-right: 1rem;
+    width: auto;
+}
+
+/* Results */
+#mcqResult {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #0984e3;
+    margin-top: 2rem;
+    padding: 1rem;
+    background: rgba(9, 132, 227, 0.1);
+    border-radius: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        padding: 1rem;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    nav ul {
+        gap: 1rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .login-container,
+    .register-container,
+    .dashboard-container,
+    .mcq-container {
+        margin: 6rem 1rem 2rem;
+        padding: 1.5rem;
+    }
+
+    .options {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-container,
+.register-container,
+.dashboard-container,
+.mcq-container {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.dashboard-container p {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2d3436;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#startMCQTest, #startCodingTest {
+    margin: 0;
+    width: 100%;
+    padding: 1.2rem 1.8rem;
+    display: inline-block;
+    background: linear-gradient(45deg, #0984e3, #00b894);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+#startMCQTest::before, #startCodingTest::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+#startMCQTest:hover::before, #startCodingTest:hover::before {
+    left: 100%;
+}
+
+#startMCQTest:hover, #startCodingTest:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(9, 132, 227, 0.3);
+}
+
+/* Update responsive styles */
+@media (max-width: 768px) {
+    .dashboard-container p {
+        font-size: 1.8rem;
+    }
+
+    #startMCQTest, #startCodingTest {
+        font-size: 1.8rem;
+        padding: 1rem 1.5rem;
+    }
+}
+
+/* Enhanced Coding Test Page Styles */
+.coding-test-container {
+    max-width: 1400px;
+    margin: 6rem auto 2rem;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    min-height: calc(100vh - 8rem);
+    position: relative;
+}
+
+.coding-test-container::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(9, 132, 227, 0.1) 0%, transparent 70%);
+    z-index: -1;
+    animation: float 6s ease-in-out infinite;
+}
+
+.coding-test-container::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(0, 184, 148, 0.1) 0%, transparent 70%);
+    z-index: -1;
+    animation: float 8s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20px, 20px); }
+}
+
+.coding-question-section {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.coding-question-section:hover {
+    transform: translateY(-5px);
+}
+
+.coding-question-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #0984e3, #00b894, #0984e3);
+    background-size: 200% 100%;
+    animation: gradientMove 3s linear infinite;
+}
+
+.coding-question-section h2 {
+    color: #2d3436;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #dfe6e9;
+    position: relative;
+}
+
+.coding-question-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, #0984e3, #00b894);
+    animation: slideRight 2s ease-in-out infinite;
+}
+
+@keyframes slideRight {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.code-editor-section {
+    background: #1e1e1e;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.code-editor-section:hover {
+    transform: translateY(-5px);
+}
+
+.code-editor-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #00b894, #0984e3, #00b894);
+    background-size: 200% 100%;
+    animation: gradientMove 3s linear infinite;
+}
+
+.code-editor {
+    width: 100%;
+    height: 500px;
+    background: #1e1e1e;
+    border: none;
+    border-radius: 10px;
+    padding: 1rem;
+    font-family: 'Fira Code', monospace;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #d4d4d4;
+    resize: none;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.code-editor:focus {
+    outline: none;
+    box-shadow: inset 0 0 20px rgba(9, 132, 227, 0.3);
+}
+
+.code-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+.run-button, .submit-button {
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.run-button {
+    background: linear-gradient(45deg, #00b894, #0984e3);
+    color: white;
+}
+
+.submit-button {
+    background: linear-gradient(45deg, #0984e3, #00b894);
+    color: white;
+}
+
+.run-button::before, .submit-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.run-button:hover::before, .submit-button:hover::before {
+    left: 100%;
+}
+
+.run-button:hover, .submit-button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.output-section {
+    background: #1e1e1e;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    min-height: 100px;
+    color: #d4d4d4;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    overflow-y: auto;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.output-section:hover {
+    box-shadow: inset 0 0 20px rgba(9, 132, 227, 0.3);
+}
+
+.timer-section {
+    position: fixed;
+    top: 1rem;
+    right: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1rem 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2d3436;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { border-color: rgba(9, 132, 227, 0); }
+    50% { border-color: rgba(9, 132, 227, 0.5); }
+    100% { border-color: rgba(9, 132, 227, 0); }
+}
+
+.timer-section:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive Design for Coding Test */
+@media (max-width: 1024px) {
+    .coding-test-container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .coding-question-section,
+    .code-editor-section {
+        margin-bottom: 2rem;
+    }
+
+    .code-editor {
+        height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .coding-test-container {
+        margin: 5rem 1rem 1rem;
+    }
+
+    .code-controls {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .run-button,
+    .submit-button {
+        width: 100%;
+    }
+
+    .timer-section {
+        position: static;
+        margin-bottom: 1rem;
+        text-align: center;
+        animation: none;
+    }
+}
+
+/* Code Editor Page Styles */
+.code-editor-page {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    padding: 2rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.code-editor-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.code-editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.code-editor-header h1 {
+    font-size: 2.5rem;
+    color: #2d3436;
+    margin: 0;
+    background: linear-gradient(45deg, #0984e3, #00b894);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.timer {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2d3436;
+    background: rgba(9, 132, 227, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+}
+
+.question-section {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.question-section h3 {
+    color: #2d3436;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.test-cases-section {
+    background: rgba(0, 184, 148, 0.05);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.test-cases-section h4 {
+    color: #00b894;
+    margin-bottom: 0.5rem;
+}
+
+.test-cases-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.test-cases-section li {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    font-family: 'Fira Code', monospace;
+}
+
+.editor-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.language-selector, .input-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.styled-select {
+    padding: 0.8rem;
+    border: 2px solid #dfe6e9;
+    border-radius: 10px;
+    font-size: 1rem;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.styled-select:focus {
+    border-color: #0984e3;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(9, 132, 227, 0.1);
+}
+
+.styled-textarea {
+    padding: 1rem;
+    border: 2px solid #dfe6e9;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: 'Fira Code', monospace;
+    resize: vertical;
+    min-height: 100px;
+    transition: all 0.3s ease;
+}
+
+.styled-textarea:focus {
+    border-color: #0984e3;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(9, 132, 227, 0.1);
+}
+
+.monaco-editor-container {
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.action-button {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.run-button {
+    background: linear-gradient(45deg, #00b894, #0984e3);
+    color: white;
+}
+
+.submit-button {
+    background: linear-gradient(45deg, #0984e3, #00b894);
+    color: white;
+}
+
+.clear-button {
+    background: #dfe6e9;
+    color: #2d3436;
+}
+
+.action-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.button-icon {
+    font-size: 1.2rem;
+}
+
+.output-section {
+    background: #1e1e1e;
+    border-radius: 10px;
+    padding: 1.5rem;
+    color: #dfdada;
+    font-family: 'Fira Code', monospace;
+}
+
+.output-section h4 {
+    color: #00b894;
+    margin-bottom: 1rem;
+}
+
+.output-section pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* Responsive Design for Code Editor */
+@media (max-width: 768px) {
+    .code-editor-page {
+        padding: 1rem;
+    }
+
+    .code-editor-container {
+        padding: 1rem;
+    }
+
+    .code-editor-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .editor-controls {
+        grid-template-columns: 1fr;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .action-button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+h1, h3 { 
+    text-align: center;
+    color: #2d3436;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(45deg, #0984e3, #00b894);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+#editorContainer { 
+    width: 100%; 
+    height: 500px; 
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.controls { 
+    margin-top: 2rem; 
+    display: flex; 
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+select, button, textarea { 
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    width: 100%;
+    margin-top: 0.5rem;
+    border: 2px solid #dfe6e9;
+    border-radius: 10px;
+    background: white;
+    transition: all 0.3s ease;
+    font-family: 'Fira Code', monospace;
+}
+
+select:focus, textarea:focus {
+    outline: none;
+    border-color: #0984e3;
+    box-shadow: 0 0 0 3px rgba(9, 132, 227, 0.1);
+}
+
+button {
+    background: linear-gradient(45deg, #0984e3, #00b894);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#outputContainer { 
+    margin-top: 2rem; 
+    padding: 1.5rem; 
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    color: #0c0808;
+    font-family: 'Fira Code', monospace;
+    font-size: 1rem;
+    line-height: 1.6;
+    min-height: 100px;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+#testCasesContainer { 
+    margin-top: 2rem; 
+    padding: 1.5rem; 
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+#testCasesContainer h4 {
+    color: #00b894;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+#testCasesContainer ul {
+    list-style: none;
+    padding: 0;
+}
+
+#testCasesContainer li {
+    padding: 0.8rem;
+    margin-bottom: 0.8rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    font-family: 'Fira Code', monospace;
+    border-left: 4px solid #0984e3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    select, button, textarea {
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Question Section Styling */
+#questionText {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #2d3436;
+    line-height: 1.6;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+    border-left: 5px solid #0984e3;
+    transition: all 0.3s ease;
+}
+
+#questionText::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #0984e3, #00b894, #0984e3);
+    background-size: 200% 100%;
+    animation: gradientMove 3s linear infinite;
+}
+
+#questionText:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Test Cases Section Styling */
+#testCasesContainer {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-top: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    border-left: 5px solid #00b894;
+}
+
+#testCasesContainer h3 {
+    color: #00b894;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #dfe6e9;
+    position: relative;
+}
+
+#testCasesContainer h3::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, #00b894, #0984e3);
+    animation: slideRight 2s ease-in-out infinite;
+}
+
+#testCasesList {
+    display: grid;
+    gap: 1rem;
+}
+
+#testCasesList li {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1.2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border-left: 4px solid #0984e3;
+    font-family: 'Fira Code', monospace;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+#testCasesList li:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#testCasesList li b {
+    color: #0984e3;
+    font-weight: 600;
+}
+
+/* Animations */
+@keyframes gradientMove {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
+}
+
+@keyframes slideRight {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #questionText {
+        font-size: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    #testCasesContainer {
+        padding: 1.5rem;
+    }
+
+    #testCasesList li {
+        padding: 1rem;
+    }
+}
+
+/* Coding Test Page Styles */
+#codingQuestions {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    display: grid;
+    gap: 2rem;
+}
+
+#codingQuestions .question {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border-left: 5px solid #0984e3;
+    position: relative;
+    overflow: hidden;
+}
+
+#codingQuestions .question:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+#codingQuestions .question::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #0984e3, #00b894, #0984e3);
+    background-size: 200% 100%;
+    animation: gradientMove 3s linear infinite;
+}
+
+#codingQuestions .question p {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2d3436;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+#codingQuestions .test-cases {
+    background: rgba(0, 184, 148, 0.05);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+#codingQuestions .test-cases b {
+    color: #00b894;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+#codingQuestions .test-cases ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+}
+
+#codingQuestions .test-cases li {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1rem;
+    border-radius: 8px;
+    font-family: 'Fira Code', monospace;
+    font-size: 1rem;
+    line-height: 1.6;
+    border-left: 4px solid #0984e3;
+    transition: all 0.3s ease;
+}
+
+#codingQuestions .test-cases li:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#codingQuestions .test-cases li b {
+    color: #0984e3;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+#codingQuestions button {
+    background: linear-gradient(45deg, #0984e3, #00b894);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 1rem;
+}
+
+#codingQuestions button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #codingQuestions {
+        padding: 1rem;
+    }
+
+    #codingQuestions .question {
+        padding: 1.5rem;
+    }
+
+    #codingQuestions .question p {
+        font-size: 1.3rem;
+    }
+
+    #codingQuestions .test-cases {
+        padding: 1rem;
+    }
+
+    #codingQuestions button {
+        width: 100%;
+    }
+}

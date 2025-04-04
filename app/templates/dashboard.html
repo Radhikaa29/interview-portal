@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Student Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='css/styles.css') }}">
+</head>
+<body onload="loadDashboard()">
+
+    <header>
+        <nav>
+            <div class="logo">Student Portal</div>
+            <ul>
+                <li><a href="#" id="logoutBtn">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="dashboard-container">
+        <h2>Welcome</h2>
+        <p>Select an option below:</p>
+
+        <div class="options">
+            <button id="startMCQTest" onclick="startMCQTest()">Start MCQ Test</button>
+<button id="startCodingTest" onclick="startCodingTest()">Start Coding Test</button>
+
+            </div>
+    </section>
+
+    <script src="{{ url_for('static', path='js/scripts.js') }}"></script>
+</body>
+</html>
