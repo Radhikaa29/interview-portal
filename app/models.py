@@ -37,7 +37,8 @@ class TestResult(Base):
     __tablename__ = "test_results"
     id = Column(Integer, primary_key=True, index=True)
     student_id = Column(Integer, ForeignKey("students.id")) 
-    score = Column(Integer, nullable=False) 
+    score = Column(Integer, nullable=False)
+    submitted = Column(Boolean, default=False) 
     
     student = relationship("Student", back_populates="test_results")  # ✅ Fixed ForeignKey reference
 
@@ -59,7 +60,7 @@ class TestCase(Base):
     question_id = Column(Integer, ForeignKey("coding_questions.question_id", ondelete="CASCADE"))
     input_data = Column(String, nullable=False)
     expected_output = Column(String, nullable=False)
-    description = Column(Text, nullable=True) 
+ 
 
     coding_question = relationship("CodingQuestion", back_populates="test_cases")
 

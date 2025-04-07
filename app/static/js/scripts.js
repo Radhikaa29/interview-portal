@@ -148,21 +148,22 @@ async function loadMCQTest() {
             `;
         
             // Set text content to avoid rendering issues
-            questionElement.querySelector("p span").textContent = q.question;
+            questionElement.querySelector("p span").innerHTML = q.question;
             const labels = questionElement.querySelectorAll("label span");
-            labels[0].textContent = options[0];
-            labels[1].textContent = options[1];
-            labels[2].textContent = options[2];
-            labels[3].textContent = options[3];
+            labels[0].innerHTML = options[0];
+            labels[1].innerHTML= options[1];
+            labels[2].innerHTML = options[2];
+            labels[3].innerHTML = options[3];
         
             questionsContainer.appendChild(questionElement);
         });
         
     } catch (error) {
         console.error("Error loading MCQs:", error);
-        document.getElementById("mcqQuestions").innerHTML = "<p>Error loading questions. Please try again.</p>";
+        document.getElementById("mcqQuestions").innerHTML = "<p>Error loading questions. Unauthorized access.</p>";
     }
 }
+//implemeting the code for the submit- mcq-test
 
 // ✅ Submit MCQ Test
 async function submitMCQTest() {
@@ -182,6 +183,11 @@ async function submitMCQTest() {
         alert("Please answer at least one question!");
         return;
     }
+    const submitButton = document.getElementById("submitBtn");
+    submitButton.disabled = true;
+    submitButton.innerText = "Submitting...";
+
+    console.log("Sending answers:", JSON.stringify(answers)); // ✅ Debug log
 
     try {
         const response = await fetch("/mcq/submit-mcq-test/", {
@@ -193,17 +199,50 @@ async function submitMCQTest() {
             body: JSON.stringify(answers)
         });
 
+        const responseData = await response.json();
+        console.log("Response:", responseData); // ✅ Debug log
+
         if (response.ok) {
-            const data = await response.json();
-            document.getElementById("mcqResult").innerText = `Your Score: ${data.score} / 20`;
-        } else {
-            alert("Error submitting test. Try again.");
+            document.getElementById("mcqResult").innerText = `Your Score: ${responseData.score} / 20`;
+            submitButton.innerText = "Test Already Submitted";
+            submitButton.style.backgroundColor = "#ccc";
+            submitButton.disabled = true;
+        }else {
+            // 👇 Handle duplicate submission case
+            if (responseData.detail && responseData.detail.toLowerCase().includes("already submitted"))
+                {
+                alert("⚠️ You have already submitted the MCQ test. You cannot submit it again.");
+                submitButton.innerText = "Already Submitted";
+                submitButton.style.backgroundColor = "#ccc";
+                submitButton.disabled = true;
+            } else {
+                alert(`Error: ${responseData.detail}`);
+                submitButton.disabled = false;
+                submitButton.innerText = "Submit Test";
+            }
         }
     } catch (error) {
         console.error("MCQ Submission Error:", error);
         alert("An error occurred while submitting the test. Try again.");
+        submitButton.disabled = false;
+        submitButton.innerText = "Submit Test";
     }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const startCodingTestBtn = document.getElementById("startCodingTest");
+
+    if (startCodingTestBtn) {  // ✅ Check if the button exists
+        startCodingTestBtn.addEventListener("click", function () {
+            window.location.href = "/coding-test";  // Change this to the correct coding test page URL
+        });
+    } else {
+        console.error("Error: 'startCodingTestBtn' not found in the DOM.");
+    }
+});
+
+
+
 async function loadCodingTest() {
     const token = localStorage.getItem("token");
     if (!token) {
