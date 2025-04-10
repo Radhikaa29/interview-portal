@@ -30,6 +30,9 @@
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
+ 
+
+
 
     .result-container h3 {
       color: #007BFF;
@@ -47,6 +50,30 @@
       border-top: 1px solid #ccc;
       margin: 15px 0;
     }
+    .pass-box {
+  text-align: center;
+  margin: 20px auto;
+  padding: 15px 25px;
+  background-color: #d4edda;
+  color: #155724;
+  font-weight: bold;
+  border: 1px solid #c3e6cb;
+  border-radius: 8px;
+  max-width: 400px;
+}
+.fail-box {
+  text-align: center;
+  margin: 20px auto;
+  padding: 15px 25px;
+  background-color: #f8d7da;
+  color: #721c24;
+  font-weight: bold;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  max-width: 400px;
+}
+
+
   </style>
 </head>
 <body>
@@ -82,15 +109,24 @@
       const data = await response.json();
 
       let html = `
-        <h3>Student Info</h3>
-        <p><strong>ID:</strong> ${data.student.id}</p>
-        <p><strong>Name:</strong> ${data.student.name}</p>
-        <p><strong>Email:</strong> ${data.student.email}</p>
-        <p><strong>Mobile:</strong> ${data.student.mobile}</p>
-        <p><strong>Language:</strong> ${data.student.language}</p>
-        <p><strong>MCQ Result:</strong> ${data.mcq_result}</p>
-        <h3>Coding Results</h3>
-      `;
+
+    <h3>Student Info</h3>
+      
+    <p><strong>ID:</strong> ${data.student.id}</p>
+    <p><strong>Name:</strong> ${data.student.name}</p>
+    <p><strong>Email:</strong> ${data.student.email}</p>
+    <p><strong>Mobile:</strong> ${data.student.mobile}</p>
+    <p><strong>Language:</strong> ${data.student.language}</p>
+    <p><strong>MCQ Result:</strong> ${data.mcq_result}</p>
+    
+    <h3>Coding Results</h3>
+`;
+let passedCount = 0;
+  data.coding_results.forEach(res => {
+    if (res.status === "Passed") {
+      passedCount++;
+    }
+  });
 
       if (data.coding_results.length === 0) {
         html += "<p>No coding results found.</p>";
@@ -112,8 +148,18 @@
           `;
         });
       }
-
-      resultDiv.innerHTML = html;
+      let resultBox = "";
+      if (data.mcq_result > 10 && passedCount >= 3) {
+    html = `
+      <div class="pass-box">🎉 This student <strong>passed</strong> the test!</div>
+    ` + html;
+  }
+  else {
+  html = `
+    <div class="fail-box">❌ This student <strong>did not pass</strong> the test.</div>
+  ` + html;
+}
+      resultDiv.innerHTML =resultBox + html;
     }
 
     // Call it on page load
