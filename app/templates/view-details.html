@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Admin Dashboard</title>
+  <title>Student details</title>
   <style>
     body {
       background-color: #f0f8ff;
@@ -14,34 +14,6 @@
     h2 {
       color: #007BFF;
       text-align: center;
-    }
-
-    .search-box {
-      display: flex;
-      justify-content: center;
-      margin: 20px auto;
-    }
-
-    input {
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      width: 300px;
-      font-size: 16px;
-    }
-
-    button {
-      padding: 10px 20px;
-      margin-left: 10px;
-      background-color: #007BFF;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #0056b3;
     }
 
     #error {
@@ -78,35 +50,37 @@
   </style>
 </head>
 <body>
-  <h2>Admin Dashboard</h2>
-  <div class="search-box">
-    <input type="number" id="studentId" placeholder="Enter Student ID">
-    <button onclick="searchStudent()">Search</button>
-  </div>
+  <h2>Student Details</h2>
   <p id="error"></p>
   <div id="result" class="result-container"></div>
 
   <script>
-    async function searchStudent() {
-      const studentId = document.getElementById('studentId').value;
+    async function fetchStudentDetail() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const studentId = urlParams.get('id');
       const token = localStorage.getItem('token');
       const resultDiv = document.getElementById('result');
       resultDiv.innerHTML = "";
       document.getElementById("error").innerText = "";
-  
+
+      if (!studentId) {
+        document.getElementById("error").innerText = "No student ID found in URL!";
+        return;
+      }
+
       const response = await fetch(`http://127.0.0.1:8000/admin/admin/search-user/${studentId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
-  
+
       if (!response.ok) {
         document.getElementById("error").innerText = "Student not found or unauthorized!";
         return;
       }
-  
+
       const data = await response.json();
-  
+
       let html = `
         <h3>Student Info</h3>
         <p><strong>ID:</strong> ${data.student.id}</p>
@@ -117,7 +91,7 @@
         <p><strong>MCQ Result:</strong> ${data.mcq_result}</p>
         <h3>Coding Results</h3>
       `;
-  
+
       if (data.coding_results.length === 0) {
         html += "<p>No coding results found.</p>";
       } else {
@@ -138,10 +112,13 @@
           `;
         });
       }
-  
+
       resultDiv.innerHTML = html;
     }
+
+    // Call it on page load
+    fetchStudentDetail();
   </script>
-  
+
 </body>
 </html>

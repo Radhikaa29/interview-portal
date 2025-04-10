@@ -73,7 +73,7 @@
 
       if (response.ok) {
         localStorage.setItem('token', data.access_token);
-        window.location.href = '/admin-dashboard';
+        window.location.href = '/student-list';
       } else {
         document.getElementById("login-error").innerText = data.detail || "Login failed!";
       }

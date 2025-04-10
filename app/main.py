@@ -55,7 +55,10 @@ def code_editor(request: Request, questionId: int):
 def admin_login(request: Request):
     return templates.TemplateResponse("admin-login.html",{"request": request})
     
-@app.get("/admin-dashboard")
+@app.get("/view-details")
 def admin_dashboard(request:Request) :
-    return templates.TemplateResponse("admin-dashboard.html",{"request" : request})
+    return templates.TemplateResponse("view-details.html",{"request" : request,"id": id})
 
+@app.get("/student-list")
+def student_list(request:Request):
+    return templates.TemplateResponse("student-list.html",{"request" : request})
