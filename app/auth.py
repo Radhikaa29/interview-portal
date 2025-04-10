@@ -7,13 +7,17 @@ from sqlalchemy.orm import Session
 from database import SessionLocal
 from models import Student
 from typing import Optional
+from models import Admin  # make sure you have Admin model imported
 
+
+  # This should match your login route
 SECRET_KEY = "your_secret_key"
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+ACCESS_TOKEN_EXPIRE_MINUTES = 120
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
 
 def get_db():
     db = SessionLocal()
@@ -54,6 +58,29 @@ async def get_current_student(token: str = Depends(oauth2_scheme), db: Session =
                 detail="Student not found"
             )
         return student
+    except JWTError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid token"
+        )
+
+async def get_current_admin(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)) -> Admin:
+    """Retrieve the current authenticated admin from the token."""
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        admin_id: str = payload.get("sub")
+        if not admin_id:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid credentials"
+            )
+        admin = db.query(Admin).filter(Admin.id == int(admin_id)).first()
+        if not admin:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Admin not found"
+            )
+        return admin
     except JWTError:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

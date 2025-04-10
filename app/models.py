@@ -79,3 +79,8 @@ class CodingResult(Base):
     student = relationship("Student", back_populates="coding_results")  # ✅ Fixed Reference
     coding_question = relationship("CodingQuestion", back_populates="coding_results")  # ✅ Fixed Reference
 
+class Admin(Base):
+    __tablename__ = "admins"
+    id = Column(Integer, primary_key=True, index=True)
+    username = Column(String, unique=True, index=True)
+    password = Column(String)  

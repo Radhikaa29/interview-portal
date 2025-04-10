@@ -80,3 +80,20 @@ class CodeRunRequest(BaseModel):
     language: str  
     code: str  
     stdin: Optional[str] = ""  
+
+class AdminLogin(BaseModel):
+    username: str
+    password: str
+
+class UserSearchResponse(BaseModel):
+    id: int
+    username: str
+    email: str
+    mobile_number: str
+
+class StudentBasicInfo(BaseModel):
+    id: int
+    username: str
+
+    class Config:
+        from_attributes = True
